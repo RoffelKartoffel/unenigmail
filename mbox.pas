@@ -80,7 +80,8 @@ begin
   while not Eof(fFileIn) do
   begin
     ReadLn(fFileIn, tmp);
-    if (lastLine = '') and (copy(tmp, 1, 5) = 'From ') then break;
+    //if (lastLine = '') and (copy(tmp, 1, 5) = 'From ') then break;
+    if (copy(tmp, 1, 5) = 'From ') then break;
     body.Add(tmp);
     lastLine := tmp;
   end;
