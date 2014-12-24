@@ -7,7 +7,8 @@ Usage:
   -f <file name>    file to strip
 
 Example:
-  unenigmail "~/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"
+  unenigmail "/home/me/.thunderbird/.default/Mail/Local 
+Folders/Inbox.sbd/friends"
 
   
 Compilation:
