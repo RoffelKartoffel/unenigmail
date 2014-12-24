@@ -8,3 +8,7 @@ Usage:
 
 Example:
   unenigmail "~/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"
+
+  
+Compilation:
+  lazbuild --build-mode=Release unenigmail.lpi
