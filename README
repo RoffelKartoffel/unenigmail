@@ -1,4 +1,4 @@
-unenigmail v0.01                                                                                                   
+unenigmail v0.01                                                           
                                                                                                                    
 Unenigmail strips Enigmails PGP encryption from emails within a supplied mbox file.                                
                                                                                                                    
@@ -7,8 +7,7 @@ Usage:
   -f <file name>    file to strip
 
 Example:
-  unenigmail "/home/me/.thunderbird/.default/Mail/Local 
-Folders/Inbox.sbd/friends"
+  unenigmail "/home/me/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"
 
   
 Compilation:
