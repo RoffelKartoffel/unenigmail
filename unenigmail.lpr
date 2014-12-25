@@ -6,7 +6,7 @@ uses
   {$IFDEF UNIX}{$IFDEF UseCThreads}
   cthreads,
   {$ENDIF}{$ENDIF}
-  contnrs, baseunix,
+  baseunix,
   mbox, gpg,
   Classes, SysUtils, CustApp, util, mail
   { you can add units after this };
@@ -66,10 +66,6 @@ begin
 
   WriteLn('Processing file: ', GetOptionValue('f') );
   processMailFile( GetOptionValue('f') );
-
-  //processMailFile('/tmp/freunde');
-  //WriteLn();
-  //WriteLn('done.');
 
 
   // stop program loop
