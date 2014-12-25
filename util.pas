@@ -14,11 +14,20 @@ procedure addUnenigmailSignature(var meta: TStringList);
 implementation
 
 
-function programID(): string;
+function fillLine(input: string; filler: char; count: integer): string;
+var
+  missing, i: integer;
 begin
-  result := 'unenigmail v0.01';
+  result := input;
+  missing := count - Length(input);
+  for i := 1 to missing do
+    result := result + filler;
 end;
 
+function programID(): string;
+begin
+  result := 'unenigmail ' + FloatToStrF({$I VERSION},ffGeneral, 2, 0);
+end;
 
 procedure addUnenigmailSignature(var meta: TStringList);
 var
@@ -28,14 +37,14 @@ begin
   tmp := meta;
   meta := TStringList.Create;
 
-  meta.Add('------------------------------------------------------------------------------');
-  meta.Add('--------- unenigmail v0.01 ---------------------------------------------------');
-  meta.Add('------------------------------------------------------------------------------');
+  meta.Add( fillLine('', '-', 90) );
+  meta.Add( fillLine('--------- ' + programID() + ' ', '-', 90) );
+  meta.Add( fillLine('', '-', 90) );
 
   for line in tmp do
       meta.Add(line);
 
-  meta.Add('------------------------------------------------------------------------------');
+  meta.Add( fillLine('', '-', 90) );
 
   FreeAndNil(tmp);
 end;
