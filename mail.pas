@@ -83,10 +83,15 @@ begin
     if (head[i] = 'Content-Type: multipart/encrypted;') then
     begin
       // locate last line belonging to multipart entry
+      n := head.Count-1;
       for j := i+1 to head.Count -1 do
-         if head[j][1] <> ' ' then break;
+         if head[j][1] <> ' ' then
+         begin
+            n := j-1;
+            break;
+         end;
       // delete all multipart lines
-      for n := j-1 downto i do
+      for n := n downto i do
          head.Delete(n);
       break;
     end;
