@@ -11,4 +11,4 @@ Example:
 
 
 Compilation:
-  lazbuild --build-mode=Release unenigmail.lpi
+  fpc -O3 -Og -Co -Ci -Cr -Ct unenigmail.lpr
