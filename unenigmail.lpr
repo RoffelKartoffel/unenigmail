@@ -13,6 +13,10 @@ uses
 
 type
 
+TProcessedStats = record
+  total, gpg, gpg_success : integer;
+end;
+
 
   unenigmail = class(TCustomApplication)
   protected
@@ -22,8 +26,8 @@ type
     destructor Destroy; override;
     procedure WriteHelp; virtual;
 
-    procedure processMailFile(file1: string);
-    procedure filter(var mail: TMail);
+    procedure processMailFile(file1: string; var stats: TProcessedStats);
+    procedure filter(var mail: TMail; var stats: TProcessedStats);
   end;
 
 { unenigmail }
@@ -38,6 +42,7 @@ End;
 procedure unenigmail.DoRun;
 var
   ErrorMsg: String;
+  stats: TProcessedStats;
 begin
   // SIGPIPE-Handler registrieren, damit wir nicht bei abgebrochenen Pipes sterben
   fpSignal(SIGPIPE, @SignalHandler);
@@ -65,29 +70,39 @@ begin
 
 
   WriteLn('Processing file: ', GetOptionValue('f') );
-  processMailFile( GetOptionValue('f') );
+  processMailFile( GetOptionValue('f'), stats );
+
+                   // #9 ist tab
+  WriteLn('  mails: ' + IntToStr(stats.total) +
+    ', with gpg: ' + IntToStr(stats.gpg) +
+    ', decrypted: ' + IntToStr(stats.gpg_success));
 
 
   // stop program loop
   Terminate;
 end;
 
-procedure unenigmail.processMailFile(file1: string);
+procedure unenigmail.processMailFile(file1: string; var stats: TProcessedStats);
 var
   mbox: T_mbox;
   mail: TMail;
   file2: string;
 begin
+  stats.total := 0;
+  stats.gpg := 0;
+  stats.gpg_success := 0;
+
   file2 := file1 + '.unenigmail';
   mbox := T_mbox.Create(file1, file2);
 
   while not mbox.isEof() do
   begin
     mail := mbox.getNext();
+    Inc(stats.total);
 
     // only consider multipart mails
     if mail.isGPGMultipart() then
-       filter(mail);
+       filter(mail, stats);
 
     mbox.writeNext(mail);
     FreeAndNil(mail);
@@ -98,7 +113,7 @@ begin
   RenameFile(file2, file1);
 end;
 
-procedure unenigmail.filter(var mail: TMail);
+procedure unenigmail.filter(var mail: TMail; var stats: TProcessedStats);
 const
   PGP_START_MESSAGE = '-----BEGIN PGP MESSAGE-----';
   PGP_END_MESSAGE = '-----END PGP MESSAGE-----';
@@ -128,9 +143,12 @@ begin
   if gpg.Count > 0 then
   begin
     // try to decrypt
+    Inc(stats.gpg);
     plain := nil;
     if GPGDecrypt(gpg, plain) then
     begin
+        Inc(stats.gpg_success);
+
         mail.removeXEnigmailHeader();
         mail.removeGPGMultipartHeader();
 
