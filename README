@@ -12,3 +12,4 @@ Example:
 
 Compilation:
   lazbuild --build-mode=Release unenigmail.lpi
+
