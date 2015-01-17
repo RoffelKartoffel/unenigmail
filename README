@@ -1,6 +1,7 @@
 unenigmail
 
 Unenigmail strips Enigmails PGP encryption from emails within a supplied mbox file.
+Note: This is only recommended if you store your emails in a secure environment. For example an mbox on your local disk with disk encrypion.
 
 Usage:
   -h                this screen
@@ -9,7 +10,8 @@ Usage:
 Example:
   unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"
 
-
+  
+Compilation dependencies:
+  lazarus
 Compilation:
   lazbuild --build-mode=Release unenigmail.lpi
-
