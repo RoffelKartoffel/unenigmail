@@ -39,6 +39,8 @@ implementation
 Destructor T_mbox.Destroy();
 begin
   closeAndFlush();
+  FreeAndNil(head);
+  FreeAndNil(body);
   inherited;
 end;
 
@@ -61,7 +63,7 @@ end;
 
 procedure T_mbox.readNextToBuffer();
 var
-   tmp, lastLine: string;
+   tmp: string;
 begin
   if dataBuffered = True then exit;
 
@@ -74,20 +76,23 @@ begin
     head.Add(tmp);
   end;
 
+  if head.Count = 0 then
+    raise EExternal.Create('mbox is malformed.');
+  if (copy(head[0], 1, 5) <> 'From ') then
+    raise EExternal.Create('mbox is malformed.');
+
   body := TStringList.Create;
   tmp := '';
-  lastLine := 'foobar'; // != empty line
   while not Eof(fFileIn) do
   begin
     ReadLn(fFileIn, tmp);
-    //if (lastLine = '') and (copy(tmp, 1, 5) = 'From ') then break;
     if (copy(tmp, 1, 5) = 'From ') then break;
     body.Add(tmp);
-    lastLine := tmp;
   end;
   getNextBuffer := tmp;
 
-  dataBuffered := true;
+  if body.Count = 0 then
+    raise EExternal.Create('mbox is malformed.');
 end;
 
 function T_mbox.getNext(): TMail;
