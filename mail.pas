@@ -76,7 +76,6 @@ end;
 
 procedure TMail.removeGPGMultipartHeader();
 var
-   line: string;
    i,j,n: integer;
 begin
   for i := 0 to head.Count -1 do
