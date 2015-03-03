@@ -4,7 +4,7 @@ Unenigmail strips Enigmails PGP encryption from emails within a supplied mbox fi
 Note: This is only recommended if you store your emails in a secure environment. For example an mbox on your local disk with disk encrypion.
 
 Usage:
-  -h                this screen
+  -h                                           this screen
   -f <file name/folder name>    file or folder with files to strip
 
 Example:
