@@ -7,8 +7,11 @@ Usage:
   -h                            this screen
   -f <file name/folder name>    file or folder with files to strip
 
-Example:
+  
+Example (single File):
   unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"
+Example (folder):
+  unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/"
 
   
 Compilation dependencies:
