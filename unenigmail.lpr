@@ -26,6 +26,7 @@ end;
     destructor Destroy; override;
     procedure WriteHelp; virtual;
 
+    procedure processFileOrFolder(pathIn: string; var stats: TProcessedStats);
     procedure processMailFile(file1: string; var stats: TProcessedStats);
     procedure filter(var mail: TMail; var stats: TProcessedStats);
   end;
@@ -68,18 +69,68 @@ begin
     Exit;
   end;
 
+  stats.total := 0;
+  stats.gpg := 0;
+  stats.gpg_success := 0;
+  processFileOrFolder( GetOptionValue('f'), stats );
 
-  WriteLn('Processing file: ', GetOptionValue('f') );
-  processMailFile( GetOptionValue('f'), stats );
-
-                   // #9 ist tab
-  WriteLn('  mails: ' + IntToStr(stats.total) +
-    ', with gpg: ' + IntToStr(stats.gpg) +
-    ', decrypted: ' + IntToStr(stats.gpg_success));
-
+  WriteLn();
+  WriteLn('summary:');
+  WriteLn('    mails: ':7 ,  IntToStr(stats.total):7,
+    '    with gpg:':7,IntToStr(stats.gpg):7,
+    '    decrypted:':7 ,IntToStr(stats.gpg_success):7 );
 
   // stop program loop
   Terminate;
+end;
+
+procedure unenigmail.processFileOrFolder(pathIn: string; var stats: TProcessedStats);
+var
+  statsTmp: TProcessedStats;
+  Info : TSearchRec;
+  path: string;
+  files: array of string;
+  len: integer;
+begin
+  if (FileGetAttr(pathIn) and faDirectory) <> 0 then
+  begin // it's a folder
+    // search all files and folders whithin given folder
+    SetLength(files, 0);
+    If FindFirst ( pathIn + PathDelim + '*',faAnyFile and faDirectory,Info)=0 then
+    begin
+      Repeat
+        With Info do
+        begin
+          If (Attr and faDirectory) = faDirectory then
+            if (Name = '.') or (Name = '..') then
+               continue;
+
+          len := Length(files);
+          SetLength(files, len+1);
+          files[len] := Name;
+        end;
+      Until FindNext(info)<>0;
+    end;
+    FindClose(Info);
+
+    for path in files do
+      processFileOrFolder(pathIn + PathDelim + path, stats);
+  end
+  else
+  begin  // it's a file
+    WriteLn('Processing file: ', pathIn );
+
+    processMailFile( pathIn, statsTmp );
+
+    WriteLn('    mails: ':7 ,  IntToStr(statsTmp.total):7,
+        '    with gpg:':7,IntToStr(statsTmp.gpg):7,
+        '    decrypted:':7 ,IntToStr(statsTmp.gpg_success):7 );
+
+    Inc(stats.total, statsTmp.total);
+    Inc(stats.gpg, statsTmp.gpg);
+    Inc(stats.gpg_success, statsTmp.gpg_success);
+  end;
+
 end;
 
 procedure unenigmail.processMailFile(file1: string; var stats: TProcessedStats);
@@ -95,22 +146,34 @@ begin
   file2 := file1 + '.unenigmail';
   mbox := T_mbox.Create(file1, file2);
 
-  while not mbox.isEof() do
-  begin
-    mail := mbox.getNext();
-    Inc(stats.total);
+  try
+    while not mbox.isEof() do
+    begin
+      mail := mbox.getNext();
+      Inc(stats.total);
 
-    // only consider multipart mails
-    if mail.isGPGMultipart() then
-       filter(mail, stats);
+      // only consider multipart mails
+      if mail.isGPGMultipart() then
+         filter(mail, stats);
 
-    mbox.writeNext(mail);
-    FreeAndNil(mail);
+      mbox.writeNext(mail);
+      FreeAndNil(mail);
+    end;
+  except
+
   end;
+
   mbox.closeAndFlush();
 
-  DeleteFile(file1);
-  RenameFile(file2, file1);
+  if stats.gpg_success > 0 then
+  begin
+    DeleteFile(file1);
+    RenameFile(file2, file1);
+  end
+  else
+  begin
+    DeleteFile(file2);
+  end;
 end;
 
 procedure unenigmail.filter(var mail: TMail; var stats: TProcessedStats);
@@ -192,8 +255,8 @@ begin
   WriteLn('Unenigmail strips Enigmails PGP encryption from emails within a supplied mbox file.');
   WriteLn();
   writeln('Usage: ');
-  WriteLn('  -h                this screen');
-  WriteLn('  -f <file name>    file to strip');
+  WriteLn('  -h                            this screen');
+  WriteLn('  -f <file name/folder name>    file or folder with files to strip');
   WriteLn();
   WriteLn('Example:');
   WriteLn('  unenigmail "~/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"');
