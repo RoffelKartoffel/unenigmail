@@ -5,7 +5,7 @@ Note: This is only recommended if you store your emails in a secure environment.
 
 Usage:
   -h                this screen
-  -f <file name>    file to strip
+  -f <file name/folder name>    file or folder with files to strip
 
 Example:
   unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"
