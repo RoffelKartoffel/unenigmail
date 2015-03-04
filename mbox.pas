@@ -14,7 +14,6 @@ Type
   T_mbox = class
   private
     fFileIn, fFileOut : TextFile;
-    fFileInPath: string;
 
     fFileIsBinary: Boolean;
     dataBuffered: boolean;
@@ -23,8 +22,7 @@ Type
     body: TStringList;
 
     procedure readNextToBuffer();
-
-    function fileStartsWithBinary(): Boolean;
+    function fileStartsWithBinary(path: string): Boolean;
   protected
   public
 
@@ -51,8 +49,7 @@ end;
 
 Constructor T_mbox.Create(fileIn: string; fileOut: string);
 begin
-  fFileInPath := fileIn;
-  fFileIsBinary := fileStartsWithBinary();
+  fFileIsBinary := fileStartsWithBinary(fileIn);
 
   AssignFile(fFileIn, fileIn);
   Reset(fFileIn);
@@ -69,16 +66,16 @@ begin
   CloseFile(fFileOut);
 end;
 
-function T_mbox.fileStartsWithBinary(): Boolean;
+function T_mbox.fileStartsWithBinary(path: string): Boolean;
 var
    handle: file;
    buf : Array[1..2048] of byte;
    total : smallint;
    i: integer;
 begin
-   AssignFile(handle, fFileInPath);
+   AssignFile(handle, path);
    reset(handle, 1);
-   BlockRead(handle ,buf, 10, total);
+   BlockRead(handle ,buf, sizeof(buf), total);
    close(handle);
 
    for i := 1 to total do
