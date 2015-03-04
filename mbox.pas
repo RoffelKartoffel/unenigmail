@@ -16,12 +16,15 @@ Type
     fFileIn, fFileOut : TextFile;
     fFileInPath: string;
 
+    fFileIsBinary: Boolean;
     dataBuffered: boolean;
     getNextBuffer: string;
     head: TStringList;
     body: TStringList;
 
     procedure readNextToBuffer();
+
+    function fileStartsWithBinary(): Boolean;
   protected
   public
 
@@ -31,7 +34,7 @@ Type
     function isEof(): boolean;
     procedure writeNext(mail: TMail);
     procedure closeAndFlush();
-    function fileStartsWithBinary(): Boolean;
+
 
   End;
 
@@ -49,6 +52,8 @@ end;
 Constructor T_mbox.Create(fileIn: string; fileOut: string);
 begin
   fFileInPath := fileIn;
+  fFileIsBinary := fileStartsWithBinary();
+
   AssignFile(fFileIn, fileIn);
   Reset(fFileIn);
 
@@ -73,7 +78,7 @@ var
 begin
    AssignFile(handle, fFileInPath);
    reset(handle, 1);
-   BlockRead(handle ,buf, sizeof(buf), total);
+   BlockRead(handle ,buf, 10, total);
    close(handle);
 
    for i := 1 to total do
@@ -159,6 +164,12 @@ end;
 
 function T_mbox.isEof(): boolean;
 begin
+  if fFileIsBinary then
+  begin
+    result := true;
+    exit;
+  end;
+
   Result := Eof(fFileIn);
 end;
 
