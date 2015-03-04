@@ -146,21 +146,24 @@ begin
   file2 := file1 + '.unenigmail';
   mbox := T_mbox.Create(file1, file2);
 
-  try
-    while not mbox.isEof() do
-    begin
-      mail := mbox.getNext();
-      Inc(stats.total);
+  if not mbox.fileStartsWithBinary() then
+  begin
+    try
+      while not mbox.isEof() do
+      begin
+        mail := mbox.getNext();
+        Inc(stats.total);
 
-      // only consider multipart mails
-      if mail.isGPGMultipart() then
-         filter(mail, stats);
+        // only consider multipart mails
+        if mail.isGPGMultipart() then
+           filter(mail, stats);
 
-      mbox.writeNext(mail);
-      FreeAndNil(mail);
+        mbox.writeNext(mail);
+        FreeAndNil(mail);
+      end;
+    except
+
     end;
-  except
-
   end;
 
   mbox.closeAndFlush();
