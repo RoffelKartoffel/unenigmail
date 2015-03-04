@@ -14,6 +14,7 @@ Type
   T_mbox = class
   private
     fFileIn, fFileOut : TextFile;
+    fFileInPath: string;
 
     dataBuffered: boolean;
     getNextBuffer: string;
@@ -30,6 +31,7 @@ Type
     function isEof(): boolean;
     procedure writeNext(mail: TMail);
     procedure closeAndFlush();
+    function fileStartsWithBinary(): Boolean;
 
   End;
 
@@ -46,6 +48,7 @@ end;
 
 Constructor T_mbox.Create(fileIn: string; fileOut: string);
 begin
+  fFileInPath := fileIn;
   AssignFile(fFileIn, fileIn);
   Reset(fFileIn);
 
@@ -61,19 +64,50 @@ begin
   CloseFile(fFileOut);
 end;
 
+function T_mbox.fileStartsWithBinary(): Boolean;
+var
+   handle: file;
+   buf : Array[1..2048] of byte;
+   total : smallint;
+   i: integer;
+begin
+   AssignFile(handle, fFileInPath);
+   reset(handle, 1);
+   BlockRead(handle ,buf, sizeof(buf), total);
+   close(handle);
+
+   for i := 1 to total do
+   begin
+      if (buf[i] < 32) or (buf[i] > 126) then
+      begin
+        if (buf[i] = 10) or (buf[i] = 13) or (buf[i] = 9) then continue;
+        result := true;
+        exit;
+      end;
+   end;
+
+   result := false;
+end;
+
 procedure T_mbox.readNextToBuffer();
 var
    tmp: string;
+   len: integer;
 begin
   if dataBuffered = True then exit;
 
   head := TStringList.Create;
   if getNextBuffer <> '' then head.Add(getNextBuffer);
+  len := 0;
   while not Eof(fFileIn) do
   begin
     ReadLn(fFileIn, tmp);
     if tmp = '' then break;
     head.Add(tmp);
+
+    inc(len, Length(tmp));
+    if (len > 100 * 1024 * 1024) then
+      raise EExternal.Create('mail exceeded 100mb.');
   end;
 
   if head.Count = 0 then
@@ -83,16 +117,23 @@ begin
 
   body := TStringList.Create;
   tmp := '';
+  len := 0;
   while not Eof(fFileIn) do
   begin
     ReadLn(fFileIn, tmp);
     if (copy(tmp, 1, 5) = 'From ') then break;
     body.Add(tmp);
+
+    inc(len, Length(tmp));
+    if (len > 100 * 1024 * 1024) then
+      raise EExternal.Create('mail exceeded 100mb.');
   end;
   getNextBuffer := tmp;
 
   if body.Count = 0 then
     raise EExternal.Create('mbox is malformed.');
+
+  dataBuffered := True;
 end;
 
 function T_mbox.getNext(): TMail;
