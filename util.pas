@@ -8,6 +8,7 @@ uses
   Classes, SysUtils;
 
 function encodeAsQuotedPrintable(const s: string): string;
+function decodeQuotedPrintable(const s: string): string;
 function programID(): string;
 procedure addUnenigmailSignature(var meta: TStringList);
 
@@ -68,6 +69,12 @@ begin
     else
         Result := Result + s[i];
   end;
+end;
+
+function decodeQuotedPrintable(const s: string): string;
+begin
+  // was to lazy to code a real implementation
+  Result := StringReplace(s, '=3D', '=', [rfReplaceAll]);
 end;
 
 

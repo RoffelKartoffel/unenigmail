@@ -63,7 +63,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
-        <CommandLineParams Value="-f &quot;/home/jan/.thunderbird/g7u6jobm.default/Mail/Local Folders/Sent&quot;"/>
+        <CommandLineParams Value="-f /tmp/testmail2"/>
       </local>
     </RunParams>
     <Units Count="4">

@@ -154,9 +154,7 @@ begin
       mail := mbox.getNext();
       Inc(stats.total);
 
-      // only consider multipart mails
-      if mail.isGPGMultipart() then
-         filter(mail, stats);
+      filter(mail, stats);
 
       mbox.writeNext(mail);
       FreeAndNil(mail);
@@ -199,7 +197,7 @@ begin
       posStart := pos(PGP_START_MESSAGE, line);
 
     if (posStart > 0) and (posEnd = 0) then
-      gpg.Add(line);
+      gpg.Add( decodeQuotedPrintable(line) );
 
     if posEnd = 0 then
        posEnd := pos(PGP_END_MESSAGE, line);
