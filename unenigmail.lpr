@@ -118,13 +118,15 @@ begin
   end
   else
   begin  // it's a file
-    WriteLn('Processing file: ', pathIn );
-
     processMailFile( pathIn, statsTmp );
 
-    WriteLn('    mails: ':7 ,  IntToStr(statsTmp.total):7,
-        '    with gpg:':7,IntToStr(statsTmp.gpg):7,
-        '    decrypted:':7 ,IntToStr(statsTmp.gpg_success):7 );
+    if statsTmp.total > 0 then
+    begin
+      WriteLn( pathIn );
+      WriteLn('    mails: ':7 ,  IntToStr(statsTmp.total):7,
+          '    with gpg:':7,IntToStr(statsTmp.gpg):7,
+          '    decrypted:':7 ,IntToStr(statsTmp.gpg_success):7 );
+    end;
 
     Inc(stats.total, statsTmp.total);
     Inc(stats.gpg, statsTmp.gpg);

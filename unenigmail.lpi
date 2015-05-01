@@ -37,6 +37,12 @@
           </Parsing>
           <CodeGeneration>
             <SmartLinkUnit Value="True"/>
+            <Checks>
+              <IOChecks Value="True"/>
+              <RangeChecks Value="True"/>
+              <OverflowChecks Value="True"/>
+              <StackChecks Value="True"/>
+            </Checks>
             <Optimizations>
               <OptimizationLevel Value="3"/>
             </Optimizations>
@@ -57,6 +63,7 @@
     <RunParams>
       <local>
         <FormatVersion Value="1"/>
+        <CommandLineParams Value="-f &quot;/home/jan/.thunderbird/g7u6jobm.default/Mail/Local Folders/Sent&quot;"/>
       </local>
     </RunParams>
     <Units Count="4">
@@ -95,6 +102,14 @@
         <StaticKeyword Value="True"/>
       </SyntaxOptions>
     </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+    </CodeGeneration>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">

@@ -80,8 +80,9 @@ begin
 
    for i := 1 to total do
    begin
-      if (buf[i] < 32) or (buf[i] > 126) then
+      if (buf[i] < 32) then
       begin
+        // \r \n \t
         if (buf[i] = 10) or (buf[i] = 13) or (buf[i] = 9) then continue;
         result := true;
         exit;
@@ -131,9 +132,6 @@ begin
       raise EExternal.Create('mail exceeded 100mb.');
   end;
   getNextBuffer := tmp;
-
-  if body.Count = 0 then
-    raise EExternal.Create('mbox is malformed.');
 
   dataBuffered := True;
 end;
