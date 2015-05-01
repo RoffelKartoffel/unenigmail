@@ -47,12 +47,6 @@
             </Debugging>
             <LinkSmart Value="True"/>
           </Linking>
-          <Other>
-            <CompilerMessages>
-              <MsgFileName Value=""/>
-            </CompilerMessages>
-            <CompilerPath Value="$(CompPath)"/>
-          </Other>
         </CompilerOptions>
       </Item2>
     </BuildModes>
@@ -69,7 +63,6 @@
       <Unit0>
         <Filename Value="unenigmail.lpr"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="unenigmail"/>
       </Unit0>
       <Unit1>
         <Filename Value="util.pas"/>
@@ -102,12 +95,6 @@
         <StaticKeyword Value="True"/>
       </SyntaxOptions>
     </Parsing>
-    <Other>
-      <CompilerMessages>
-        <MsgFileName Value=""/>
-      </CompilerMessages>
-      <CompilerPath Value="$(CompPath)"/>
-    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions Count="3">

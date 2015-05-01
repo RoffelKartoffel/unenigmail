@@ -253,13 +253,18 @@ begin
   WriteLn(programID);
   WriteLn();
   WriteLn('Unenigmail strips Enigmails PGP encryption from emails within a supplied mbox file.');
+  WriteLn('Note: This is only recommended if you store your emails in a secure environment. For example an mbox on your local disk with disk encrypion.');
+
   WriteLn();
   writeln('Usage: ');
   WriteLn('  -h                            this screen');
   WriteLn('  -f <file name/folder name>    file or folder with files to strip');
   WriteLn();
-  WriteLn('Example:');
-  WriteLn('  unenigmail "~/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"');
+  WriteLn('Example (single File):');
+  WriteLn('  unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"');
+  WriteLn('Example (folder):');
+  WriteLn('  unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/"');
+
 end;
 
 var
