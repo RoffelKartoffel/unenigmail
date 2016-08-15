@@ -90,7 +90,7 @@ var
   BytesReadOut, BytesReadErr: LongInt;
   stdOut, stdErr: TStringList;
   n, funde: integer;
-  str, str2, bound: string;
+  str, tmpStr, str2, bound: string;
   headerDone: boolean;
 begin
   P := TProcess.Create(nil);
@@ -111,8 +111,8 @@ begin
     // wenn wir große Daten schreiben, muessen wir auch immer lesen
     readStdOutErr(P, MOut, MErr, BytesReadOut, BytesReadErr, nOut, nErr, READ_BYTES );
 
-    str := str + #10;
-    P.Input.Write(str[1], Length(str));
+    tmpStr := str + #10;
+    P.Input.Write(tmpStr[1], Length(tmpStr));
   end;
 
   // gpg signalisieren, zum Ende zu kommen
