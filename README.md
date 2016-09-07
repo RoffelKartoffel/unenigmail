@@ -8,7 +8,7 @@ Note: This is only recommended if you store your emails in a secure environment.
 cd unenigmail
 ./configure
 cd build.release
-make
+make -j
 ```
 
 ## Usage
