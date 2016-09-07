@@ -281,10 +281,18 @@ MailCoverter::stripEncryptionFromFile(const QString &pPath)
     }
 
 #ifndef QT_DEBUG
-    QFile original(pPath);
-    original.remove();
-    QFile converted(pathTmp);
-    converted.rename(pPath);
+    if (processedDecrypted > 0)
+    {
+        QFile original(pPath);
+        original.remove();
+        QFile converted(pathTmp);
+        converted.rename(pPath);
+    }
+    else
+    {
+        QFile converted(pathTmp);
+        converted.remove();
+    }
 #else
     qInfo() << "** Debug Mode. Original file has not been overwritten.";
 #endif
