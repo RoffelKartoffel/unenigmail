@@ -1,20 +1,24 @@
-unenigmail
+# unenigmail
 
-Unenigmail strips Enigmails PGP encryption from emails within a supplied mbox file.
+Unenigmail strips Enigmails GPG encryption from emails within a supplied mbox file. Since version 0.2 this project has been rewritten in C++.
 Note: This is only recommended if you store your emails in a secure environment. For example an mbox on your local disk with disk encrypion.
 
-Usage:
-  -h                            this screen
-  -f <file name/folder name>    file or folder with files to strip
+## Building
+```sh
+cd unenigmail
+./configure
+cd build.release
+make
+```
 
-  
-Example (single File):
-  unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/Inbox.sbd/friends"
-Example (folder):
-  unenigmail -f "/home/me/.thunderbird/.default/Mail/Local Folders/"
+## Usage
+```sh
+Usage: ./unenigmail [options] file
 
-  
-Compilation dependencies:
-  lazarus
-Compilation:
-  lazbuild --build-mode=Release unenigmail.lpi
+Options:
+  -h, --help  Displays this help.
+  -v          Show verbose program output.
+
+Arguments:
+  file        Mbox to strip encryption from.
+```
