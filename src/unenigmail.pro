@@ -2,7 +2,6 @@ QT += core
 QT -= gui
 
 CONFIG += c++11
-CONFIG += testcase
 
 TARGET = unenigmail
 CONFIG += console
