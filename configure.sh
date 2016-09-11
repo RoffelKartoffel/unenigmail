@@ -1,4 +1,7 @@
 mkdir build.release -p
 cd build.release
-qmake -makefile "TARGET = release_binary" ../src/unenigmail.pro
+cmake -DCMAKE_BUILD_TYPE=RELEASE ../
 cd ..
+
+
+
