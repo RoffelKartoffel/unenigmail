@@ -9,12 +9,9 @@ namespace unenigmail
 class MailCoverter
 {
   private:
-    static QString fillLine(QString const &pInput, QChar const &pFiller,
-                            const int pTargetLength);
-    static QVector<QString>
-    generateGpgInfoFooter(const Gpg::Decrypted &pDecrypted);
-    static bool processDecryptedBody(const Gpg::Decrypted &pDecrypted,
-                                     QVector<QString> &pInnerHead,
+    static QString fillLine(QString const &pInput, QChar const &pFiller, const int pTargetLength);
+    static QVector<QString> generateGpgInfoFooter(const Gpg::Decrypted &pDecrypted);
+    static bool processDecryptedBody(const Gpg::Decrypted &pDecrypted, QVector<QString> &pInnerHead,
                                      QVector<QString> &pInnerBody);
 
   public:
@@ -46,8 +43,7 @@ class MailCoverter
         }
     };
 
-    static ReturnCode stripEncryptionFromMail(const Mail &pMailInput,
-                                              Mail &pMailOutput);
+    static ReturnCode stripEncryptionFromMail(const Mail &pMailInput, Mail &pMailOutput);
     static Statistic stripEncryptionFromFile(QString const &pPath);
 };
 }

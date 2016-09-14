@@ -24,11 +24,11 @@ QByteArray QuotedPrintable::encode(const QString &input)
     const char hex[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
 
     QByteArray latin1 = input.toUtf8();
-    for (int i = 0; i < latin1.length() ; ++i)
+    for (int i = 0; i < latin1.length(); ++i)
     {
         byte = latin1[i];
 
-        if ((byte == ' ') || ((byte >= 33) && (byte <= 126)  && (byte != '=')))
+        if ((byte == ' ') || ((byte >= 33) && (byte <= 126) && (byte != '=')))
         {
             output.append(byte);
         }
@@ -50,15 +50,15 @@ QString QuotedPrintable::decode(const QByteArray &input)
 
     for (int i = 0; i < input.length(); ++i)
     {
-        if (input.at(i) == '=' && i+2<input.length())
+        if (input.at(i) == '=' && i + 2 < input.length())
         {
             QString strValue = input.mid((++i)++, 2);
             bool converted;
             char character = strValue.toUInt(&converted, 16);
-            if( converted )
+            if (converted)
                 output.append(character);
             else
-                output.append( "=" + strValue);
+                output.append("=" + strValue);
         }
         else
         {

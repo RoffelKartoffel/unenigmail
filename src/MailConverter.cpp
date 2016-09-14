@@ -12,8 +12,7 @@
 using namespace unenigmail;
 
 
-QString MailCoverter::fillLine(const QString &pInput, const QChar &pFiller,
-                               const int pTargetLength)
+QString MailCoverter::fillLine(const QString &pInput, const QChar &pFiller, const int pTargetLength)
 {
     QString result = pInput;
     int missingChars = pTargetLength - result.size();
@@ -26,14 +25,12 @@ QString MailCoverter::fillLine(const QString &pInput, const QChar &pFiller,
 }
 
 
-QVector<QString>
-MailCoverter::generateGpgInfoFooter(const Gpg::Decrypted &pDecrypted)
+QVector<QString> MailCoverter::generateGpgInfoFooter(const Gpg::Decrypted &pDecrypted)
 {
     QVector<QString> footer;
     footer += QString();
     footer += fillLine("", '-', 90);
-    footer += fillLine(QStringLiteral("--------- unenigmail ") + VERSION + " ",
-                       '-', 90);
+    footer += fillLine(QStringLiteral("--------- unenigmail ") + VERSION + " ", '-', 90);
     footer += fillLine("", '-', 90);
 
     for (QByteArray const &line : pDecrypted.mStdErr.split('\n'))
@@ -53,8 +50,7 @@ MailCoverter::generateGpgInfoFooter(const Gpg::Decrypted &pDecrypted)
 }
 
 
-bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted,
-                                        QVector<QString> &pInnerHead,
+bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted, QVector<QString> &pInnerHead,
                                         QVector<QString> &pInnerBody)
 {
     QVector<QString> decryptedLines;
@@ -70,8 +66,7 @@ bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted,
     for (int h = 0; h < decryptedLines.size(); h++)
     {
         QString const &line = decryptedLines.at(h);
-        if (!headFinished &&
-            line.startsWith(QLatin1String("Content-Type: multipart/mixed;")))
+        if (!headFinished && line.startsWith(QLatin1String("Content-Type: multipart/mixed;")))
         {
             for (int i = h; i < decryptedLines.size(); i++)
             {
@@ -80,17 +75,14 @@ bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted,
                 QString const &boundaryLine = decryptedLines.at(i);
                 if (boundaryLine.contains(BOUNDARY))
                 {
-                    currentBoundary = boundaryLine.mid(
-                        boundaryLine.indexOf(BOUNDARY) + BOUNDARY.length(), -1);
-                    currentBoundary =
-                        currentBoundary.mid(0, currentBoundary.indexOf("\""));
+                    currentBoundary = boundaryLine.mid(boundaryLine.indexOf(BOUNDARY) + BOUNDARY.length(), -1);
+                    currentBoundary = currentBoundary.mid(0, currentBoundary.indexOf("\""));
                     break;
                 }
 
                 if (h == decryptedLines.size() - 1)
                 {
-                    qWarning()
-                        << "Missing announced multipart boundary definition.";
+                    qWarning() << "Missing announced multipart boundary definition.";
                     return false;
                 }
             }
@@ -99,15 +91,11 @@ bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted,
         {
             headFinished = true;
         }
-        else if (!currentBoundary.isEmpty() &&
-                 line == QStringLiteral("--") + currentBoundary)
+        else if (!currentBoundary.isEmpty() && line == QStringLiteral("--") + currentBoundary)
         {
             headFinished = false;
         }
-        else if (!currentBoundary.isEmpty() &&
-                 line ==
-                     QStringLiteral("--") + currentBoundary +
-                         QStringLiteral("--"))
+        else if (!currentBoundary.isEmpty() && line == QStringLiteral("--") + currentBoundary + QStringLiteral("--"))
         {
             int pos = h;
             if (pos < 0)
@@ -154,8 +142,7 @@ bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted,
 }
 
 
-MailCoverter::ReturnCode
-MailCoverter::stripEncryptionFromMail(Mail const &pMailInput, Mail &pMailOutput)
+MailCoverter::ReturnCode MailCoverter::stripEncryptionFromMail(Mail const &pMailInput, Mail &pMailOutput)
 {
     pMailOutput = pMailInput;
 
@@ -198,8 +185,7 @@ MailCoverter::stripEncryptionFromMail(Mail const &pMailInput, Mail &pMailOutput)
     for (int i = 0; i < head.size(); i++)
     {
         HeaderOption option = head.at(i);
-        if (option.startsWith(
-                QLatin1String("Content-Type: multipart/encrypted;")))
+        if (option.startsWith(QLatin1String("Content-Type: multipart/encrypted;")))
         {
             encryptedMultipart = true;
             head.remove(i);
@@ -214,8 +200,7 @@ MailCoverter::stripEncryptionFromMail(Mail const &pMailInput, Mail &pMailOutput)
 
     if (!encryptedMultipart)
     {
-        qWarning()
-            << "Found GPG witout multipart/encrypted. This is unhandled!";
+        qWarning() << "Found GPG witout multipart/encrypted. This is unhandled!";
         return ERROR;
     }
     // encrypted multipart means the whole body is replaced
@@ -236,8 +221,7 @@ MailCoverter::stripEncryptionFromMail(Mail const &pMailInput, Mail &pMailOutput)
 }
 
 
-MailCoverter::Statistic
-MailCoverter::stripEncryptionFromFile(const QString &pPath)
+MailCoverter::Statistic MailCoverter::stripEncryptionFromFile(const QString &pPath)
 {
     const QString pathTmp = pPath % QStringLiteral(".unenigmail");
 
@@ -259,9 +243,7 @@ MailCoverter::stripEncryptionFromFile(const QString &pPath)
             processedTotal++;
 
             Mail mailConverted;
-            MailCoverter::ReturnCode ret =
-                MailCoverter::stripEncryptionFromMail(mailOriginal,
-                                                      mailConverted);
+            MailCoverter::ReturnCode ret = MailCoverter::stripEncryptionFromMail(mailOriginal, mailConverted);
             if (ret == MailCoverter::ReturnCode::ERROR)
             {
                 processedFailed++;

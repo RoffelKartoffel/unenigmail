@@ -43,8 +43,7 @@ int main(int argc, char *argv[])
 
     qInfo() << "Processing file:" << file;
     MailCoverter::Statistic stats = MailCoverter::stripEncryptionFromFile(file);
-    qInfo() << "Files processed:" << stats.mTotal
-            << "Files decrypted:" << stats.mDecrypted
+    qInfo() << "Files processed:" << stats.mTotal << "Files decrypted:" << stats.mDecrypted
             << "Decryption failed:" << stats.mFailed;
 
     return 0;

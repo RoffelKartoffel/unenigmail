@@ -11,8 +11,7 @@ using namespace unenigmail;
 Gpg::Decrypted Gpg::decrypt(QVector<QString> const &pInput)
 {
     QProcess process;
-    process.start(QStringLiteral("gpg"), QStringList()
-                                             << QStringLiteral("--decrypt"));
+    process.start(QStringLiteral("gpg"), QStringList() << QStringLiteral("--decrypt"));
     process.waitForStarted(-1);
 
     if (process.state() != QProcess::Running)
@@ -34,6 +33,5 @@ Gpg::Decrypted Gpg::decrypt(QVector<QString> const &pInput)
         return Decrypted();
     }
 
-    return Decrypted(process.exitCode() == 0, process.readAllStandardOutput(),
-                     process.readAllStandardError());
+    return Decrypted(process.exitCode() == 0, process.readAllStandardOutput(), process.readAllStandardError());
 }

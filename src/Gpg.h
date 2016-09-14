@@ -14,8 +14,7 @@ class Gpg
         const QByteArray mStdOut;
         const QByteArray mStdErr;
 
-        Decrypted(int pSuccessFull, QByteArray const &pStdOut,
-                  QByteArray const &pStdErr)
+        Decrypted(int pSuccessFull, QByteArray const &pStdOut, QByteArray const &pStdErr)
             : mSuccessFull(pSuccessFull)
             , mStdOut(pStdOut)
             , mStdErr(pStdErr)

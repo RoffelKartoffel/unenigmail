@@ -9,5 +9,6 @@ SpaceInEmptyParentheses: 'false'
 AllowShortFunctionsOnASingleLine: None
 MaxEmptyLinesToKeep: 2
 IndentWidth: 4
+ColumnLimit: 120
 
 ...

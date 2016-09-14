@@ -17,18 +17,17 @@
 #ifndef QUOTEDPRINTABLE_H
 #define QUOTEDPRINTABLE_H
 
-#include <QObject>
 #include <QByteArray>
+#include <QObject>
 
 class QuotedPrintable : public QObject
 {
     Q_OBJECT
-public:
-
+  public:
     static QByteArray encode(const QString &input);
     static QString decode(const QByteArray &input);
 
-private:
+  private:
     QuotedPrintable();
 };
 
