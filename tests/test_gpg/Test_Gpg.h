@@ -1,6 +1,5 @@
 #include "src/Gpg.h"
 
-#include <QDebug>
 #include <QtTest/QtTest>
 
 using namespace unenigmail;
