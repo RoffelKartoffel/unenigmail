@@ -1,0 +1,232 @@
+From - Fri Sep  9 17:02:34 2016
+X-Account-Key: account2
+X-UIDL: 0006886841eec985
+X-Mozilla-Status: 0013
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:
+Return-path: <Hermann@mayl.com>
+Delivery-date: Fri, 09 Sep 2016 17:02:58 +0200
+Received: from mi004.mc1.mail.net ([11.237.138.251])
+	by wp005.webpack.mail.net running ExIM with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	id 1biNKU-0006wM-9x; Fri, 09 Sep 2016 17:02:58 +0200
+Received: from dd8424.mayl.com ([11.13.132.187])
+	by mx0.webpack.mail.net (mi004.mc1.mail.net) with esmtps (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+	id 1biNKT-0000Pc-TG
+	for Otto@mail.net; Fri, 09 Sep 2016 17:02:58 +0200
+Received: from [11.168.1.103] (dyndsl-011-096-040-055.ewe-ip-backbone.de [11.96.40.55])
+	by dd8424.mayl.com (Postfix) with ESMTPSA id 540461F603AA
+	for <Otto@mail.net>; Fri,  9 Sep 2016 17:02:57 +0200 (CEST)
+Subject: Re:
+To: Otto Mail <Otto@mail.net>
+References: <7a575bcc-3433-8eac-ee6c-a4175dd8a9f1@mail.net>
+From: Hermann Mayl <Hermann@mayl.com>
+Message-ID: <ad6f72b3-89b9-ea5a-503a-eca542b33e37@mayl.com>
+Date: Fri, 9 Sep 2016 17:02:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+ Thunderbird/45.2.0
+MIME-Version: 1.0
+In-Reply-To: <7a575bcc-3433-8eac-ee6c-a4175dd8a9f1@mail.net>
+Content-Type: multipart/encrypted;
+ protocol="application/pgp-encrypted";
+ boundary="7e8M1p5lvpBdOFnqMiFeE7Is0lgb210Pa"
+X-HE-Virus-Scanned: Yes
+X-HE-Spam-Level: /
+X-HE-Spam-Score: 0.8
+X-HE-Spam-Report: Content analysis details:   (0.8 points)
+  pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at http://www.dnswl.org/, low
+                             trust
+                             [11.13.132.187 listed in list.dnswl.org]
+  2.5 RCVD_IN_SORBS_HTTP     RBL: SORBS: sender is open HTTP proxy server
+                             [11.96.40.55 listed in dnsbl.sorbs.net]
+ -1.0 ENCRYPTED_MESSAGE      Message is encrypted, not likely to be spam
+Envelope-to: Otto@mail.net
+
+This is an OpenPGP/MIME encrypted message (RFC 4880 and 3156)
+--7e8M1p5lvpBdOFnqMiFeE7Is0lgb210Pa
+Content-Type: application/pgp-encrypted
+Content-Description: PGP/MIME version identification
+
+Version: 1
+
+--7e8M1p5lvpBdOFnqMiFeE7Is0lgb210Pa
+Content-Type: application/octet-stream; name="encrypted.asc"
+Content-Description: OpenPGP encrypted message
+Content-Disposition: inline; filename="encrypted.asc"
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v2
+
+Body
+-----END PGP MESSAGE-----
+
+--7e8M1p5lvpBdOFnqMiFeE7Is0lgb210Pa--
+
+
+From - Fri Sep  9 22:38:57 2016
+X-Account-Key: account2
+X-UIDL: 0006886b41eec985
+X-Mozilla-Status: 0013
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:
+Return-path: <heinz@mayl.com>
+Delivery-date: Fri, 09 Sep 2016 18:36:27 +0200
+Received: from mi019.mc1.mail.net ([11.237.138.236])
+	by wp005.webpack.mail.net running ExIM with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	id 1biOmx-0007AZ-Ql; Fri, 09 Sep 2016 18:36:27 +0200
+Received: from mout.mayl.com ([11.227.15.4])
+	by mx0.webpack.mail.net (mi019.mc1.mail.net) with esmtps (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+	id 1biOmx-0006RS-Gz
+	for Otto@mail.net; Fri, 09 Sep 2016 18:36:27 +0200
+Received: from [11.117.213.2] by 3capp-webde-bs55.server.lan (via HTTP);
+ Fri, 9 Sep 2016 18:36:27 +0200
+MIME-Version: 1.0
+Message-ID: <trinity-bf5f92ee-c519-440b-a148-41bd52ad7944-1473438987245@3capp-webde-bs55>
+From: "Heinz Mayl" <heinz@mayl.com>
+To: "Otto Mail" <Otto@mail.net>
+Subject: Aw:
+Content-Type: text/html; charset=UTF-8
+Date: Fri, 9 Sep 2016 18:36:27 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <bbb52b15-93de-146a-22ea-4398b242ebc3@mail.net>
+References: <bbb52b15-93de-146a-22ea-4398b242ebc3@mail.net>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K0:Xw2lFREPvJqqr/sCDppNLWaYa4gf75oU2wW6l+tAS6q
+ 4KPzpQNgSF66RHJrV3Fihl01jXoBa4iXAyqNhRb5XbVKb9Pf8d
+ 37MhpYjaOC/TA/ECY3fn0IcyYrbPpTf8x1IKIPXZcTn4Z89YH+
+ nMe/dKCcXTkbFeojwFmlHbkmIP9e8KG4PhBCjYky6WmjaiBYY+
+ o4vDcujrKgMsMYcfXFYcSPRl0yQpZkQpC6OBDAPwCMwNTO8w2z
+ ScYowjaxmiCr+Gzf8f47BPakCjuxnIUwE/lrVki7Wz79LFlKyd cNqHJM=
+X-UI-Out-Filterresults: notjunk:1;V01:K0:A2Eh5s3ZdQk=:ShxkQCJsqiFCmTHWjIzQgK
+ ZXMGMuI3EVcrgm8RGmV3fmsNq+ifvyGn2qGbngU+8PiwHWizPJV1WRif77c257d0R//soOK+6
+ lrmJRv0keuNy/GvVoWybdQMBixWZzptx19VxD97DjP3QTC+6AZRzWg87MVY1ILKhVvOZu1g8K
+ 583zzPOp+8a+ZZ98F/X1QxztR/v+f/qSc2k6x4D0yfViLAaM96gXXahBHNcZVzu/iDHUoSqNi
+ cHirzFCMCXX5pekKXyOPIYh7cQC6yhvRcDyo9vXRB2No0ewERyhuuNfW3Zb275TxTkG1IedQg
+ z0bE1oMD1ZFQNaakx5+JXqWT/Ac/DIWb30dhFpD1n7sQOc3vdYgl44WGdjtXEEfM7KiR2lZ33
+ 2S+MsjznLaNJyV57sIrPpug4nJWqvmh4iJe9V+gP3EM3ohQgsHrVBtkd1VlEkL2bCBd1dPerH
+ LrH4aagshA==
+X-HE-Virus-Scanned: Yes
+X-HE-Spam-Level: ++++
+X-HE-Spam-Score: 4.9
+X-HE-Spam-Report: Content analysis details:   (4.9 points)
+  pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -0.7 RCVD_IN_DNSWL_LOW      RBL: Sender listed at http://www.dnswl.org/, low
+                             trust
+                             [11.227.15.4 listed in list.dnswl.org]
+  2.4 RCVD_IN_SORBS_SPAM     RBL: SORBS: sender is a spam source
+                             [11.227.15.4 listed in dnsbl.sorbs.net]
+  2.5 RCVD_IN_SORBS_HTTP     RBL: SORBS: sender is open HTTP proxy server
+  0.0 FREEMAIL_FROM          Sender email is commonly abused enduser mail provider
+                             (heinz[at]mayl.com)
+  0.1 HTML_MESSAGE           BODY: HTML included in message
+  0.7 MIME_HTML_ONLY         BODY: Message only has text/html MIME parts
+X-HE-SPF: PASSED
+Envelope-to: Otto@mail.net
+
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>asd<div>&nbsp;
+<div name="quote" style="margin:10px 5px 5px 10px; padding: 10px 0 10px 10px; border-left:2px solid #C3D9E5; word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+<div style="margin:0 0 10px 0;"><b>Gesendet:</b>&nbsp;Freitag, 09. September 2016 um 15:55 Uhr<br/>
+<b>Von:</b>&nbsp;&quot;Otto Mail&quot; &lt;Otto@mail.net&gt;<br/>
+<b>An:</b>&nbsp;&quot;Heinz Mayl&quot; &lt;heinz@mayl.com&gt;<br/>
+<b>Betreff:</b>&nbsp;Kein Betreff</div>
+
+</div>
+</div>
+</div></div></body></html>
+
+
+From - Sun Sep 11 13:20:05 2016
+X-Account-Key: account2
+X-UIDL: 0006889c41eec985
+X-Mozilla-Status: 0011
+X-Mozilla-Status2: 00000000
+X-Mozilla-Keys:
+Return-path: <Thorsten.Mayl@mayl.com>
+Delivery-date: Sun, 11 Sep 2016 13:21:02 +0200
+Received: from mi027.mc1.mail.net ([11.237.138.228])
+	by wp005.webpack.mail.net running ExIM with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	id 1bj2oo-0007tU-I7; Sun, 11 Sep 2016 13:21:02 +0200
+Received: from out1.mail.mayl.com ([11.147.53.149])
+	by mx0.webpack.mail.net (mi027.mc1.mail.net) with esmtps (TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256)
+	id 1bj2oo-00072T-72
+	for Otto@mail.net; Sun, 11 Sep 2016 13:21:02 +0200
+Received: from mx1.mail.mayl.com (localhost [11.0.0.1])
+	by out1.mail.mayl.com (Postfix mo-ext) with ESMTP id 3sX7mH5xSBz4wT1
+	for <Otto@mail.net>; Sun, 11 Sep 2016 13:21:03 +0200 (CEST)
+Received: from mx1.mail.mayl.com (localhost [127.0.0.1])
+	by mx1.mail.mayl.com (Postfix idis) with ESMTP id 3sX7mH5030z4wxY
+	for <Otto@mail.net>; Sun, 11 Sep 2016 13:21:03 +0200 (CEST)
+X-Envelope-Sender: <Thorsten.Mayl@mayl.com>
+X-RUB-Notes: Internal origin=11.147.42.227
+Received: from mail1.mail.mayl.com (mail1.mail.mayl.com [11.147.42.227])
+	by mx1.mail.mayl.com (Postfix mi-int) with ESMTP id 3sX7mH3jkSz4wT1
+	for <Otto@mail.net>; Sun, 11 Sep 2016 13:21:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mayl.com; s=mail-2016;
+	t=1473592863; bh=SmAyixTxmo3L0OfCHVjiDraMzdt4sZmUudaLZZtBxTE=;
+	h=Subject:To:References:From:Date:In-Reply-To:From;
+	b=IpTGjtG1prHpaUHEL6NM6rKiopuYte6h95wjRasR8LWJapBPuBybOWaizpFERSc2A
+	 jsGrOP8F5jcZCm8RreHom7bE8SXb3zzFReqJdKqhbLlLVrCZaRQ03xlIpu6qtXOhmH
+	 GWHSNr29x1NcnftcRgD7lJq+G+watbapaIlHxMH8=
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.98.7 at mx1.mail.mayl.com
+Received: from [11.168.178.47] (p54A096F5.dip0.t-ipconnect.de [11.160.150.245])
+	by mail1.mail.mayl.com (Postfix) with ESMTPSA id 3sX7mF32K4zySS
+	for <Otto@mail.net>; Sun, 11 Sep 2016 13:21:01 +0200 (CEST)
+Subject: Re:
+To: Otto Mail <Otto@mail.net>
+References: <00fbaec0-d3fc-d18c-4c2e-6c81f453da8d@mail.net>
+ <debe1ff6-0179-fb94-a21a-45396fee4073@mayl.com>
+ <8f0d3302-d05e-660e-94a6-62e5b88d1cd4@mail.net>
+From: Thorsten Mayl <Thorsten.Mayl@mayl.com>
+Message-ID: <f9d59360-ccaf-a8e9-6d1a-1c4ab4f16ab2@mayl.com>
+Date: Sun, 11 Sep 2016 13:21:00 +0200
+User-Agent: Mozilla 4.7 [us] (Win95; U)
+MIME-Version: 1.0
+In-Reply-To: <8f0d3302-d05e-660e-94a6-62e5b88d1cd4@mail.net>
+Content-Type: multipart/encrypted;
+ protocol="application/pgp-encrypted";
+ boundary="CuTKucPaUBL8E7SoE56aEiekCERLgKQhl"
+X-Virus-Scanned: clamav-milter 0.98.7 at mail1.mail.mayl.com
+X-Virus-Status: Clean
+X-HE-Virus-Scanned: Yes
+X-HE-Spam-Level: ---
+X-HE-Spam-Score: -3.4
+X-HE-Spam-Report: Content analysis details:   (-3.4 points)
+  pts rule name              description
+ ---- ---------------------- --------------------------------------------------
+ -2.3 RCVD_IN_DNSWL_MED      RBL: Sender listed at http://www.dnswl.org/, medium
+                              trust
+                             [134.147.53.149 listed in list.dnswl.org]
+ -0.1 DKIM_VALID_AU          Message has a valid DKIM or DK signature from author's
+                             domain
+ -0.1 DKIM_VALID             Message has at least one valid DKIM or DK signature
+  0.1 DKIM_SIGNED            Message has a DKIM or DK signature, not necessarily valid
+ -1.0 ENCRYPTED_MESSAGE      Message is encrypted, not likely to be spam
+X-HE-SPF: PASSED
+Envelope-to: Otto@mail.net
+
+This is an OpenPGP/MIME encrypted message (RFC 4880 and 3156)
+--CuTKucPaUBL8E7SoE56aEiekCERLgKQhl
+Content-Type: application/pgp-encrypted
+Content-Description: PGP/MIME version identification
+
+Version: 1
+
+--CuTKucPaUBL8E7SoE56aEiekCERLgKQhl
+Content-Type: application/octet-stream; name="encrypted.asc"
+Content-Description: OpenPGP encrypted message
+Content-Disposition: inline; filename="encrypted.asc"
+
+-----BEGIN PGP MESSAGE-----
+
+Body
+-----END PGP MESSAGE-----
+
+--CuTKucPaUBL8E7SoE56aEiekCERLgKQhl--
+
+
+
