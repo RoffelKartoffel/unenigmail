@@ -56,7 +56,6 @@ class Test_Mbox : public QObject
         QTemporaryFile file;
         file.open();
         const QString tmpFileName = file.fileName();
-        qDebug() << tmpFileName;
 
         {
             MailBoxWriter writer(tmpFileName);
@@ -68,6 +67,8 @@ class Test_Mbox : public QObject
 
         QFile expected("mbox1_output");
         QFile output(tmpFileName);
+        QVERIFY(expected.open(QIODevice::ReadOnly));
+        QVERIFY(output.open(QIODevice::ReadOnly));
         QCOMPARE(output.readAll(), expected.readAll());
     }
 };
