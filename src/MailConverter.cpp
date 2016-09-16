@@ -12,7 +12,7 @@
 using namespace unenigmail;
 
 
-QString MailCoverter::fillLine(const QString &pInput, const QChar &pFiller, const int pTargetLength)
+QString MailConverter::fillLine(const QString &pInput, const QChar &pFiller, const int pTargetLength)
 {
     QString result = pInput;
     int missingChars = pTargetLength - result.size();
@@ -25,7 +25,7 @@ QString MailCoverter::fillLine(const QString &pInput, const QChar &pFiller, cons
 }
 
 
-QVector<QString> MailCoverter::generateGpgInfoFooter(const Gpg::Decrypted &pDecrypted)
+QVector<QString> MailConverter::generateGpgInfoFooter(const Gpg::Decrypted &pDecrypted)
 {
     QVector<QString> footer;
     footer += QString();
@@ -50,8 +50,8 @@ QVector<QString> MailCoverter::generateGpgInfoFooter(const Gpg::Decrypted &pDecr
 }
 
 
-bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted, QVector<QString> &pInnerHead,
-                                        QVector<QString> &pInnerBody)
+bool MailConverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted, QVector<QString> &pInnerHead,
+                                         QVector<QString> &pInnerBody)
 {
     QVector<QString> decryptedLines;
     for (QByteArray const &line : pDecrypted.mStdOut.split('\n'))
@@ -142,7 +142,7 @@ bool MailCoverter::processDecryptedBody(Gpg::Decrypted const &pDecrypted, QVecto
 }
 
 
-MailCoverter::ReturnCode MailCoverter::stripEncryptionFromMail(Mail const &pMailInput, Mail &pMailOutput)
+MailConverter::ReturnCode MailConverter::stripEncryptionFromMail(Mail const &pMailInput, Mail &pMailOutput)
 {
     pMailOutput = pMailInput;
 
@@ -221,7 +221,7 @@ MailCoverter::ReturnCode MailCoverter::stripEncryptionFromMail(Mail const &pMail
 }
 
 
-MailCoverter::Statistic MailCoverter::stripEncryptionFromFile(const QString &pPath)
+MailConverter::Statistic MailConverter::stripEncryptionFromFile(const QString &pPath)
 {
     const QString pathTmp = pPath % QStringLiteral(".unenigmail");
 
@@ -243,14 +243,14 @@ MailCoverter::Statistic MailCoverter::stripEncryptionFromFile(const QString &pPa
             processedTotal++;
 
             Mail mailConverted;
-            MailCoverter::ReturnCode ret = MailCoverter::stripEncryptionFromMail(mailOriginal, mailConverted);
-            if (ret == MailCoverter::ReturnCode::ERROR)
+            MailConverter::ReturnCode ret = MailConverter::stripEncryptionFromMail(mailOriginal, mailConverted);
+            if (ret == MailConverter::ReturnCode::ERROR)
             {
                 processedFailed++;
                 qDebug() << "Failed to strip GPG from mail.";
             }
 
-            if (ret == MailCoverter::ReturnCode::DECRYPTED)
+            if (ret == MailConverter::ReturnCode::DECRYPTED)
             {
                 processedDecrypted++;
                 writer.write(mailConverted);

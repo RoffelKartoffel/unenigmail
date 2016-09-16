@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     const QString file = args.at(0);
 
     qInfo() << "Processing file:" << file;
-    MailCoverter::Statistic stats = MailCoverter::stripEncryptionFromFile(file);
+    MailConverter::Statistic stats = MailConverter::stripEncryptionFromFile(file);
     qInfo() << "Files processed:" << stats.mTotal << "Files decrypted:" << stats.mDecrypted
             << "Decryption failed:" << stats.mFailed;
 

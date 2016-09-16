@@ -6,7 +6,7 @@
 namespace unenigmail
 {
 
-class MailCoverter
+class MailConverter
 {
   private:
     static QString fillLine(QString const &pInput, QChar const &pFiller, const int pTargetLength);
