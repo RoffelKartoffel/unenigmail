@@ -44,6 +44,6 @@ class MailConverter
     };
 
     static ReturnCode stripEncryptionFromMail(const Mail &pMailInput, Mail &pMailOutput);
-    static Statistic stripEncryptionFromFile(QString const &pPath);
+    static Statistic stripEncryptionFromFile(QString const &pPath, const QString pOutputPath = QString());
 };
 }

@@ -221,9 +221,9 @@ MailConverter::ReturnCode MailConverter::stripEncryptionFromMail(Mail const &pMa
 }
 
 
-MailConverter::Statistic MailConverter::stripEncryptionFromFile(const QString &pPath)
+MailConverter::Statistic MailConverter::stripEncryptionFromFile(const QString &pPath, const QString pOutputPath)
 {
-    const QString pathTmp = pPath % QStringLiteral(".unenigmail");
+    const QString pathTmp = !pOutputPath.isNull() ? pOutputPath : pPath % QStringLiteral(".unenigmail");
 
     int processedTotal = 0;
     int processedDecrypted = 0;
@@ -262,22 +262,25 @@ MailConverter::Statistic MailConverter::stripEncryptionFromFile(const QString &p
         }
     }
 
+    if (pOutputPath.isNull())
+    {
 #ifndef QT_DEBUG
-    if (processedDecrypted > 0)
-    {
-        QFile original(pPath);
-        original.remove();
-        QFile converted(pathTmp);
-        converted.rename(pPath);
-    }
-    else
-    {
-        QFile converted(pathTmp);
-        converted.remove();
-    }
+        if (processedDecrypted > 0)
+        {
+            QFile original(pPath);
+            original.remove();
+            QFile converted(pathTmp);
+            converted.rename(pPath);
+        }
+        else
+        {
+            QFile converted(pathTmp);
+            converted.remove();
+        }
 #else
-    qInfo() << "** Debug Mode. Original file has not been overwritten.";
+        qInfo() << "** Debug Mode. Original file has not been overwritten.";
 #endif
+    }
 
     return Statistic(processedTotal, processedDecrypted, processedFailed);
 }

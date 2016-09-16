@@ -115,6 +115,12 @@ QVector<HeaderOption> &Mail::getHeadRef()
 }
 
 
+QVector<HeaderOption> Mail::getHead() const
+{
+    return QVector<HeaderOption>(mHead);
+}
+
+
 QVector<QString> &Mail::getBodyRef()
 {
     return mBody;

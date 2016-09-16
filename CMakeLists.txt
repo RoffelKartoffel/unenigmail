@@ -44,3 +44,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tests/test_mbox/mbox1_output ${CMAKE_
 add_executable(test_mbox ${testing_sources} "tests/test_mbox/Test_MBox.h")
 qt5_use_modules(test_mbox Test Core)
 add_test(Test_MBox test_mbox)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tests/test_mailconverter/mbox2 ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tests/test_mailconverter/mbox2_output ${CMAKE_BINARY_DIR} COPYONLY)
+add_executable(test_mailconverter ${testing_sources} "tests/test_mailconverter/Test_MailConverter.h")
+qt5_use_modules(test_mailconverter Test Core)
+add_test(Test_MailConverter test_mailconverter)

@@ -24,6 +24,7 @@ class Mail
 
     void addHeaderOptions(const QVector<QString> &pLines);
     QVector<HeaderOption> &getHeadRef();
+    QVector<HeaderOption> getHead() const;
     QVector<QString> &getBodyRef();
 };
 }
