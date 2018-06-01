@@ -28,7 +28,7 @@ list(REMOVE_ITEM testing_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp)
 ## application
 ##
 add_executable(unenigmail ${unenigmail_src})
-target_link_libraries(unenigmail Qt5Core)
+target_link_libraries(unenigmail Qt5::Core)
 
 ##
 ## tests
@@ -36,17 +36,17 @@ target_link_libraries(unenigmail Qt5Core)
 enable_testing()
 
 add_executable(test_gpg ${testing_sources} "tests/test_gpg/Test_Gpg.h")
-target_link_libraries(test_gpg Qt5Test Qt5Core)
+target_link_libraries(test_gpg Qt5::Test Qt5::Core)
 add_test(Test_Gpg test_gpg)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tests/test_mbox/mbox1 ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tests/test_mbox/mbox1_output ${CMAKE_BINARY_DIR} COPYONLY)
 add_executable(test_mbox ${testing_sources} "tests/test_mbox/Test_MBox.h")
-target_link_libraries(test_mbox Qt5Test Qt5Core)
+target_link_libraries(test_mbox Qt5::Test Qt5::Core)
 add_test(Test_MBox test_mbox)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tests/test_mailconverter/mbox2 ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tests/test_mailconverter/mbox2_output ${CMAKE_BINARY_DIR} COPYONLY)
 add_executable(test_mailconverter ${testing_sources} "tests/test_mailconverter/Test_MailConverter.h")
-target_link_libraries(test_mailconverter Qt5Test Qt5Core)
+target_link_libraries(test_mailconverter Qt5::Test Qt5::Core)
 add_test(Test_MailConverter test_mailconverter)
